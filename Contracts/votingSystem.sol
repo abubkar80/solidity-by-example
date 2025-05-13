@@ -21,8 +21,8 @@ contract votingSystem{
     }
 
     // function to [cast vote
-    function vote(){
-        require(isVotingOpen());
+    // function vote(){
+    //     require(isVotingOpen());
         
-    }
+    // }
 }
