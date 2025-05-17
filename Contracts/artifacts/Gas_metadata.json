@@ -1,0 +1,53 @@
+{
+	"compiler": {
+		"version": "0.8.16+commit.07a7930e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "forever",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Contracts/Gas.sol": "Gas"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Contracts/Gas.sol": {
+			"keccak256": "0x250edc768a6beb2b4001eb3967df95da78b9d026c3ecacc8c3ff66e537b08254",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7c2114e1610a79f8c4e4fb8e38863116918897739e215a04eb12d59c771b6de7",
+				"dweb:/ipfs/QmTgwqReGjAFxaDPNw86ztv4wn74hwWYfLdRRQMswTS5jQ"
+			]
+		}
+	},
+	"version": 1
+}

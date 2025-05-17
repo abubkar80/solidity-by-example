@@ -6,7 +6,13 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_numCandidates",
+						"type": "uint256"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -28,6 +34,25 @@
 				"name": "closeVoting",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "candidateID",
+						"type": "uint256"
+					}
+				],
+				"name": "getResult",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -77,6 +102,38 @@
 			},
 			{
 				"inputs": [],
+				"name": "numCandidates",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "candidateID",
+						"type": "uint256"
+					}
+				],
 				"name": "vote",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -85,6 +142,25 @@
 			{
 				"inputs": [],
 				"name": "voteCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "votesReceived",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -137,11 +213,11 @@
 	},
 	"sources": {
 		"Contracts/votingSystem.sol": {
-			"keccak256": "0xde140f91e9bb16938e593a38802e79f069e82589ccf6059a72287fd67a600052",
+			"keccak256": "0x22295a964d933692f566d2b7fc9c8ec11c2f7e52607c97114f4cbf6a3cce6b9e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://84171189551e801d739004754ba6c3a4c3dcf74fb02153edc00fbb00db574403",
-				"dweb:/ipfs/QmWwn2FNHTCvkjuSv3LF6eLDicgkRTqFKxeEMbN7xYdfn8"
+				"bzz-raw://fead9a443789340ed2d9278c80f31c64ac8a74987619cc96aba6f800b61064e3",
+				"dweb:/ipfs/QmV9cgN4ymeg2jCe87gdAF1hNHaf4DGZcdZGB4rMdJ7Cr7"
 			]
 		}
 	},
