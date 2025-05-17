@@ -17,6 +17,25 @@
 				"type": "constructor"
 			},
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "voter",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "candidateId",
+						"type": "uint256"
+					}
+				],
+				"name": "voteCast",
+				"type": "event"
+			},
+			{
 				"inputs": [],
 				"name": "MAX_VOTERS",
 				"outputs": [
@@ -40,7 +59,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "candidateID",
+						"name": "candidateId",
 						"type": "uint256"
 					}
 				],
@@ -49,6 +68,32 @@
 					{
 						"internalType": "uint256",
 						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTiedWinners",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getWinner",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "winnerId",
 						"type": "uint256"
 					}
 				],
@@ -130,7 +175,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "candidateID",
+						"name": "candidateId",
 						"type": "uint256"
 					}
 				],
@@ -213,11 +258,11 @@
 	},
 	"sources": {
 		"Contracts/votingSystem.sol": {
-			"keccak256": "0x22295a964d933692f566d2b7fc9c8ec11c2f7e52607c97114f4cbf6a3cce6b9e",
+			"keccak256": "0x65b1c8eddb0f479c2af49dbd4908a98bdfc052fb7f908c137bf15b87eb3f771b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fead9a443789340ed2d9278c80f31c64ac8a74987619cc96aba6f800b61064e3",
-				"dweb:/ipfs/QmV9cgN4ymeg2jCe87gdAF1hNHaf4DGZcdZGB4rMdJ7Cr7"
+				"bzz-raw://bd1d222e1fba2a3e4ad0d864dbb01112a41b858ae8275fe5f79a92b7ff5227fe",
+				"dweb:/ipfs/QmRce9w1tm66cKVGBZHXfzQ1t8SccGRuCsHoA4G3tCTCA7"
 			]
 		}
 	},
