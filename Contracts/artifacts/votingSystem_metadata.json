@@ -8,9 +8,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "_numCandidates",
-						"type": "uint256"
+						"internalType": "string[]",
+						"name": "_candidateNames",
+						"type": "string[]"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -49,10 +49,96 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "candidates",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voteCount",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "closeVoting",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "electionId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllCandidate",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "voteCount",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct votingSystem.Candidate[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "candidateId",
+						"type": "uint256"
+					}
+				],
+				"name": "getCandidateName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -103,6 +189,11 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
 						"internalType": "address",
 						"name": "",
 						"type": "address"
@@ -122,6 +213,30 @@
 			{
 				"inputs": [],
 				"name": "isClosed",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "isRegistered",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -174,6 +289,32 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "_voter",
+						"type": "address"
+					}
+				],
+				"name": "registerVoter",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string[]",
+						"name": "_candidateNames",
+						"type": "string[]"
+					}
+				],
+				"name": "resetElection",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "candidateId",
 						"type": "uint256"
@@ -185,19 +326,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "voteCount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -205,7 +333,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "votesReceived",
+				"name": "voteCount",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -258,11 +386,11 @@
 	},
 	"sources": {
 		"Contracts/votingSystem.sol": {
-			"keccak256": "0x65b1c8eddb0f479c2af49dbd4908a98bdfc052fb7f908c137bf15b87eb3f771b",
+			"keccak256": "0x93815cff4e3fe21cf43e39821207e48ccbf00ea7ee456556a2ab71407465da6c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://bd1d222e1fba2a3e4ad0d864dbb01112a41b858ae8275fe5f79a92b7ff5227fe",
-				"dweb:/ipfs/QmRce9w1tm66cKVGBZHXfzQ1t8SccGRuCsHoA4G3tCTCA7"
+				"bzz-raw://384f0576faba8e54bb11744f12e8e744fd8ec3bebe54f9fc7bbec96b130e538f",
+				"dweb:/ipfs/QmTehzjVnw6WjSgN1UzCcWDqAXFW6D3HjkecWQm4J4rmRK"
 			]
 		}
 	},

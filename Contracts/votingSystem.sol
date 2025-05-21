@@ -7,7 +7,12 @@ pragma solidity ^0.8.16;
 contract votingSystem{
     event voteCast(address indexed voter, uint256 indexed candidateId);
     uint256 public numCandidates;
-    mapping(uint256 => uint256) public votesReceived;
+
+    mapping( uint256 => mapping(uint256 => Candidate)) public candidates;
+    mapping( uint256 => mapping(address => bool)) public isRegistered;
+    mapping( uint256 => mapping(address => bool)) public  hasVoted;
+    mapping( uint256 => uint256) public voteCount;
+
     // set the max voters using constant keyword 
     uint256 public constant MAX_VOTERS = 100;
 
@@ -18,19 +23,35 @@ contract votingSystem{
     bool public isClosed;
 
     // create a varialble to track voters count
-    uint256 public voteCount;
+    
 
     // set the owner of the contract
     address public owner;
+    uint256 public electionId;
 
     //check if person has voted
-    mapping(address => bool) public  hasVoted;
+
+    struct Candidate{
+        string name;
+        uint256 voteCount;
+    }
 
     // constructor to set the deadline
-    constructor(uint256 _numCandidates){
+    constructor(string[] memory _candidateNames){
         votingDeadline = block.timestamp + 1 days;
         owner = msg.sender;
-        numCandidates = _numCandidates;
+        numCandidates = _candidateNames.length;
+
+        for(uint256 i = 0; i < numCandidates ; i++){
+            candidates[electionId][i] = Candidate(_candidateNames[i], 0);
+        }
+    }
+
+    function registerVoter(address _voter) public {
+        require(msg.sender == owner, "only owner can register a voter");
+        require(!isRegistered[electionId][_voter],"already registered");
+
+        isRegistered[electionId][_voter] = true;
     }
 
     // function to check if the voting is closed
@@ -50,53 +71,51 @@ contract votingSystem{
         require(candidateId < numCandidates,"Invalid candidate id");
         // check if the voting is open 
         require(isVotingOpen(),"Voting is not open");
-
+        require(isRegistered[electionId][msg.sender], "you are not registered to vote");
         // check if the deployer already voted
-        require(!hasVoted[msg.sender],"Already Voted");
-
+        require(!hasVoted[electionId][msg.sender],"Already Voted");
         // making sure the MAX_VOTERS is not exceeded
-        require(voteCount< MAX_VOTERS, "Max voters reached");
+        require(voteCount[electionId]< MAX_VOTERS, "Max voters reached");
 
         // changing the state of the sender when voted
-        hasVoted[msg.sender] = true;
+        hasVoted[electionId][msg.sender] = true;
 
-        votesReceived[candidateId]++;
+        candidates[electionId][candidateId].voteCount++;
 
         // increaing the voting count
-        voteCount++;
-
-        // emit voteCast(msg.sender, candidateId);
-
+        voteCount[electionId]++;
         emit voteCast(msg.sender, candidateId);
     }
 
     function getResult(uint256 candidateId) public view returns (uint256){
         require(candidateId < numCandidates, "Invalid Candidate");
-        return votesReceived[candidateId];
+        return candidates[electionId][candidateId].voteCount;
     }
 
     function getWinner() public view returns (uint256 winnerId){
         uint256 maxVotes = 0;
         winnerId = 0; 
         for(uint256 i=1 ; i< numCandidates; i++){
-            if (votesReceived[i]>maxVotes){
-                maxVotes = votesReceived[i];
+            if (candidates[electionId][i].voteCount>maxVotes){
+                maxVotes = candidates[electionId][i].voteCount;
                 winnerId= i;
             }
         }
+
+        return winnerId;
     }
 
     function getTiedWinners() public view returns (uint256 [] memory){
         uint256 maxVotes = 0;
         for (uint256 i= 0; i<numCandidates ; i++){
-            if(votesReceived[i] > maxVotes){
-                maxVotes = votesReceived[i];
+            if(candidates[electionId][i].voteCount > maxVotes){
+                maxVotes = candidates[electionId][i].voteCount;
             }
         }
 
         uint256 count = 0;
         for (uint256 i = 0; i<numCandidates ; i++){
-            if (votesReceived[i] == maxVotes){
+            if (candidates[electionId][i].voteCount == maxVotes){
                 count++;
             }
         }
@@ -105,7 +124,7 @@ contract votingSystem{
 
         uint256 index = 0 ;
         for (uint256 i=0 ; i<numCandidates ; i++){
-            if(votesReceived[i] == maxVotes){
+            if(candidates[electionId][i].voteCount == maxVotes){
                 tiedWinners[index]= i;
                 index++;
             }
@@ -114,5 +133,31 @@ contract votingSystem{
         return tiedWinners;
     }
 
+    function getCandidateName(uint256 candidateId) public view returns (string memory){
+        require(candidateId < numCandidates, "invalid candidate ID");
+        return candidates[electionId][candidateId].name;
+    }
+
+    function getAllCandidate() public view returns(Candidate[] memory){
+        Candidate[] memory result = new  Candidate[](numCandidates);
+        for(uint256 i = 0 ; i < numCandidates; i++){
+            result[i] = candidates[electionId][i];
+        }
+
+        return result;
+    }
+
+    function resetElection(string[] memory _candidateNames) public {
+        require(msg.sender == owner, "only owner can reset election");
+        electionId++;
+        numCandidates = _candidateNames.length;
+        isClosed = false;
+
+        for(uint256 i= 0; i < numCandidates; i++){
+            candidates[electionId][i] = Candidate(_candidateNames[i], 0);
+        }
+
+        voteCount[electionId] = 0;
+    }
 
 }
